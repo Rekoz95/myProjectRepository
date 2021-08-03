@@ -1,1 +1,91 @@
-<p>register-module works!</p>
+  
+  <div class="login-button">
+    <button class="btn btn-info" (click)="goToLoginPage()">Login</button>
+    </div>
+  
+
+<div class="d-flex justify-content-center">
+   <h1 class="fs-2">Registrazione Utente</h1>
+   <div class="icon-set">
+   <i class="fa fa-address-card fa-2x"></i>
+  </div>
+</div>
+
+<div class="container">
+    <form #myForm="ngForm">
+        <div class="mb-3">
+          <label  class="form-label" >Nome Utente</label>
+          <input type="text" class="form-control" placeholder="Nome Utente" [(ngModel)]="dataUser.username" #username="ngModel" name="username"    required >
+          <div *ngIf="username.invalid && (username.touched || username.dirty)">
+            <p class="colorMessage">{{errorMessageBlank}}</p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label  class="form-label">Email</label>
+          <input type="text"  class="form-control" placeholder="Email" [(ngModel)]="dataUser.email" #email="ngModel" name="email" required>
+          <div *ngIf="email.invalid && (email.touched || email.dirty)">
+            <p class="colorMessage">{{errorMessageBlank}}</p>
+          </div>
+          <div *ngIf="flgEmailErrata">
+            <p class="colorMessage">{{errorMessageEmail}}</p>
+          </div>
+        </div>
+        <div class="input-container mb-3">
+            <label  class="form-label">Password</label>
+              <div >
+                    <input [type]="hidePassword ? 'password' : 'text'"  class="form-control" placeholder="Password" [(ngModel)]="dataUser.password" #password="ngModel" name="psw" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"  required>
+                    <div *ngIf="password.invalid && (password.touched || password.dirty)">
+                      <p class="colorMessage">{{errorMessageBlank}}</p>
+                    </div>
+                      <div *ngIf="flgPasswordErrataInvalid">
+                        <p class="colorMessage">{{errorPasswordInvalid}}</p>
+                      </div>
+                       <div *ngIf="hidePassword">
+                      <button class="btn btn-secondary button-eye" (click)="showHidePassword()"><i class="fa fa-eye"></i></button>
+                     </div>
+                      <div *ngIf="!hidePassword">
+                     <button class="btn btn-secondary button-eye" (click)="showHidePassword()"><i class="fa fa-eye-slash"></i></button>
+                    </div>
+
+            </div>
+      
+          </div>
+          <div class="mb-3">
+            <label class="form-label"> Ripeti Password</label>
+            <input [type]="hideRepPassword ? 'password' : 'text'"  class="form-control" placeholder="Ripeti Password" [(ngModel)]="dataUser.repPassword" #repPassword="ngModel" name="repPassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"  required>
+            <div *ngIf="repPassword.invalid && (repPassword.touched || repPassword.dirty)">
+              <p class="colorMessage">{{errorMessageBlank}}</p>
+            </div>
+            <div *ngIf="flgPasswordErrata">
+              <p class="colorMessage">{{errorPasswordNotEqual}}</p>
+            </div>
+            <div *ngIf="flgPasswordErrataInvalid">
+              <p class="colorMessage">{{errorPasswordInvalid}}</p>
+            </div>
+
+              <div *ngIf="hideRepPassword">
+                    <button class="btn btn-secondary button-eye" (click)="showHideRepPassword()"><i class="fa fa-eye"></i></button>
+              </div>
+              <div *ngIf="!hideRepPassword">
+                    <button class="btn btn-secondary button-eye" (click)="showHideRepPassword()"><i class="fa fa-eye-slash"></i></button>
+              </div>
+
+          </div>
+
+        <div class="mb-3 form-check">
+         
+            <input type="checkbox" class="form-check-input checkbox-class" [(ngModel)]="dataUser.flgChecked" #flgChecked="ngModel" name="flgChecked" required  >
+            <label class="form-check-label" for="exampleCheck1">Accetto termini e condizioni</label>
+            
+        </div>
+
+        <div  class="d-flex justify-content-between">
+            <button type="reset" class="btn btn-warning">Reset</button>
+            <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSuccess" (click)="registraUtente()" [disabled]="myForm.invalid">Conferma</button>
+      </div>
+        
+      </form>
+</div>
+
+
+
