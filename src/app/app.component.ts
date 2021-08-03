@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Calculator';
+  
+  apriModale: boolean = false;
+  modalRef: BsModalRef | null
+
+   constructor( private modalService: BsModalService) {
+  
+  }
+  
+
+  apriCalcolatrice(template : TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-md' });
+  }
+
+  chiudiModale(event) {
+    if (event === false) {
+      this.modalRef.hide()
+      this.modalRef = null;
+    }
+     
+   }
+
 }
+
+
+
+
+
+
+
