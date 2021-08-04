@@ -1,0 +1,22 @@
+
+
+<div class="container">
+<h3 class="center-class">Cronometro</h3>
+<div class="d-flex justify-content-center">
+<h2>{{(this.stopwatcher.h >= 10) ? this.stopwatcher.h : "0" + this.stopwatcher.h}}: </h2>
+<h2>{{(this.stopwatcher.m >= 10) ? this.stopwatcher.m : "0" + this.stopwatcher.m}}: </h2>
+<h2>{{(this.stopwatcher.s >= 10) ? this.stopwatcher.s : "0" + this.stopwatcher.s}}: </h2>
+<h2>{{(this.stopwatcher.ms >= 10) ? this.stopwatcher.ms : "0" + this.stopwatcher.ms}}</h2>
+
+</div>
+<div class="center-class">
+<button class="btn btn-primary" *ngIf="!status"  (click)="startTimer()">START</button> &nbsp; 
+<button class="btn btn-danger" *ngIf="status" (click)="stopTimer()">STOP</button> &nbsp;
+<button class="btn btn-warning" (click)="resetTime()">RESET</button>
+
+
+</div>
+
+</div>
+
+
