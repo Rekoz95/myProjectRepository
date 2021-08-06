@@ -29,7 +29,8 @@ export class RegisterModuleComponent implements OnInit {
   flgEmailErrata: boolean = false;
   flgPasswordErrata: boolean = false;
   flgPasswordErrataInvalid: boolean = false;
-  pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+  regExp= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+  controlliChecked: boolean = false;
   
   
 
@@ -51,25 +52,27 @@ export class RegisterModuleComponent implements OnInit {
   registraUtente() {
     
        this.controlliForm()
+       if (this.controlliChecked) {
        this.service.newUser(this.dataUser).subscribe(
          (result) => {
            
-           if (this.flgEmailErrata === false && this.flgPasswordErrata === false) {
+           
             this.dataUser = result
             this.datausers.push(result)
             this.eventUsername.emit(result.username)
             this.flgEventModal.emit(true)
             this.route.navigate(["Utente"])
-           }
+           
          },
-
+        
          (error) => {
            error = JSON.stringify("Errore durante l inserimento"+error)
          }
+        
        )
 
        
-      
+        }
        
      }
 
@@ -81,24 +84,31 @@ export class RegisterModuleComponent implements OnInit {
 
       if (!this.dataUser.email.includes("@") || !this.dataUser.email.includes("mail") || !this.dataUser.email.includes(".com" || ".it") ) {
          this.flgEmailErrata = true;
+         this.controlliChecked= false
          
       } else {
         this.flgEmailErrata = false;
+        this.controlliChecked= true;
       } 
-     if (!this.dataUser.password.includes(this.pattern) || !this.dataUser.repPassword.includes(this.pattern)) {
+     if (!this.dataUser.password.includes(this.regExp) || !this.dataUser.repPassword.includes(this.regExp)) {
       this.flgPasswordErrataInvalid = true;
+      this.controlliChecked= false;
 
      } else {
 
       this.flgPasswordErrataInvalid = false;
-     }
+      this.controlliChecked= true;
+    }
       if (this.dataUser.repPassword !== this.dataUser.password) {
         this.flgPasswordErrata = true;
+        this.controlliChecked= false;
         
       } else {
         this.flgPasswordErrata = false;
+        this.controlliChecked= true;
       }
   }
+  return this.controlliChecked
 }
 
   showHidePassword() {
