@@ -10,6 +10,8 @@ import { AppRoutingModule } from '../app/app-routing-module';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule }   from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {ServiceService} from '../app/service.service'
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: "Registrazione",
@@ -42,7 +45,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     
     
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [{provide: APP_BASE_HREF, useValue: '/', }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

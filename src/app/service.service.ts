@@ -9,16 +9,16 @@ import {ModelUser} from 'src/app/modelUser'
 })
 export class ServiceService {
 
-  url:"http://localhost:3000/modelUser"
+  urlModel:"http://localhost:3000/modelUser"
 
   constructor(private http: HttpClient) { }
 
    getUser():Observable<ModelUser> {
-     return this.http.get<ModelUser>(this.url)
+     return this.http.get<ModelUser>(this.urlModel)
    }
 
    newUser(modelUser:ModelUser): Observable<ModelUser> {
-     return this.http.post<ModelUser>(this.url+"/",modelUser.id)
+     return this.http.post<ModelUser>(this.urlModel,modelUser.username)
    }
 
 

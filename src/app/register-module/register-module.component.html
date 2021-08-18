@@ -33,7 +33,7 @@
         <div class="input-container mb-3">
             <label  class="form-label">Password</label>
               <div >
-                    <input [type]="hidePassword ? 'password' : 'text'"  class="form-control" placeholder="Password" [(ngModel)]="dataUser.password" #password="ngModel" name="psw"   required>
+                    <input [type]="hidePassword ? 'password' : 'text'"  class="form-control" placeholder="Password" [(ngModel)]="dataUser.password" #password="ngModel" name="psw"    required>
                     <div *ngIf="password.invalid && (password.touched || password.dirty)">
                       <p class="colorMessage">{{errorMessageBlank}}</p>
                     </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label"> Ripeti Password</label>
-            <input [type]="hideRepPassword ? 'password' : 'text'"  class="form-control" placeholder="Ripeti Password" [(ngModel)]="dataUser.repPassword" #repPassword="ngModel" name="repPassword"   required>
+            <input [type]="hideRepPassword ? 'password' : 'text'"  class="form-control" placeholder="Ripeti Password" [(ngModel)]="dataUser.repPassword" #repPassword="ngModel" name="repPassword"    required>
             <div *ngIf="repPassword.invalid && (repPassword.touched || repPassword.dirty)">
               <p class="colorMessage">{{errorMessageBlank}}</p>
             </div>

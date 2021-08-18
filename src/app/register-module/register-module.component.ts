@@ -13,7 +13,7 @@ import { ServiceService } from '../service.service';
   templateUrl: './register-module.component.html',
   styleUrls: ['./register-module.component.scss']
 })
-export class RegisterModuleComponent implements OnInit {
+export class RegisterModuleComponent  {
 
   dataUser: ModelUser = new ModelUser();
   datausers: Array<ModelUser> = new Array<ModelUser>()
@@ -29,7 +29,7 @@ export class RegisterModuleComponent implements OnInit {
   flgEmailErrata: boolean = false;
   flgPasswordErrata: boolean = false;
   flgPasswordErrataInvalid: boolean = false;
-  regExp= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+  pattern= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
   controlliChecked: boolean = false;
   
   
@@ -39,10 +39,6 @@ export class RegisterModuleComponent implements OnInit {
    @Output() flgEventLogin: EventEmitter<boolean> = new EventEmitter<boolean>()
   constructor(private route: Router, private service: ServiceService) { }
 
-  ngOnInit() {
-
-   
-  }
 
   ngOnChange() {
    
@@ -59,14 +55,15 @@ export class RegisterModuleComponent implements OnInit {
            
             this.dataUser = result
             this.datausers.push(result)
-            this.eventUsername.emit(result.username)
+            this.eventUsername.emit(result)
             this.flgEventModal.emit(true)
             this.route.navigate(["Utente"])
            
          },
         
          (error) => {
-           error = JSON.stringify("Errore durante l inserimento"+error)
+           error = JSON.stringify(error)
+           console.log( "Errore: "+error)
          }
         
        )
@@ -90,15 +87,15 @@ export class RegisterModuleComponent implements OnInit {
         this.flgEmailErrata = false;
         this.controlliChecked= true;
       } 
-     if (!this.dataUser.password.includes(this.regExp) || !this.dataUser.repPassword.includes(this.regExp)) {
-      this.flgPasswordErrataInvalid = true;
-      this.controlliChecked= false;
+    //  if (!this.dataUser.password.includes(this.regExp) || !this.dataUser.repPassword.includes(this.regExp)) {
+    //   this.flgPasswordErrataInvalid = true;
+    //   this.controlliChecked= false;
 
-     } else {
+    //  } else {
 
-      this.flgPasswordErrataInvalid = false;
-      this.controlliChecked= true;
-    }
+    //   this.flgPasswordErrataInvalid = false;
+    //   this.controlliChecked= true;
+    // }
       if (this.dataUser.repPassword !== this.dataUser.password) {
         this.flgPasswordErrata = true;
         this.controlliChecked= false;

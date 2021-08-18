@@ -22,7 +22,7 @@ export class AppComponent {
   constructor() { }
 
   getObjectUsername(event) {
-    this.modelUserEvent.username = event
+    this.modelUserEvent = event
 
   }
 
