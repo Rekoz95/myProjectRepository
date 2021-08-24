@@ -7,6 +7,6 @@
 </div>
 
 <div *ngIf="loginView">
-   <login-page (flgBack)="getFlgBackEvent($event)"></login-page> 
+   <login-page (flgBack)="getFlgBackEvent($event)" (showUser)="getPageUserEvent($event)" (loginUserEvent)="getObjectUsername($event)"></login-page> 
 </div>
 

@@ -49,10 +49,11 @@ export class RegisterModuleComponent  {
     
        this.controlliForm()
        if (this.controlliChecked) {
+         this.dataUser.id = this.datausers.length+1
        this.service.newUser(this.dataUser).subscribe(
          (result) => {
            
-           
+            
             this.dataUser = result
             this.datausers.push(result)
             this.eventUsername.emit(result)

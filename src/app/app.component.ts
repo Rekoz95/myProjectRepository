@@ -42,6 +42,13 @@ export class AppComponent {
     this.loginView = event
   }
 
+  getPageUserEvent(event) {
+    this.loginView = false;
+    this.success = event
+  }
+
+ 
+
 
 }
 

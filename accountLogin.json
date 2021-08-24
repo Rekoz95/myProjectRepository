@@ -1,9 +1,13 @@
 {
-    "modelUser": [
-        {
-            
-        }
-    ]
-
-    
+  "modelUser": [
+    {},
+    {
+      "username": "Reko95",
+      "email": "kekkorikudo@gmail.com",
+      "password": "nanan",
+      "repPassword": "nanan",
+      "flgChecked": true,
+      "id": 1
+    }
+  ]
 }
