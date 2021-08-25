@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit {
   
       result.filter(element => { 
         if (element.username === this.dataUser.username && element.password === this.dataUser.password) {
-         
+          this.dataUser = element
           this.showUser.emit(true)
           this.loginUserEvent.emit(this.dataUser)
           this.router.navigate(["Utente"])
