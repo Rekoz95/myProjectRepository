@@ -8,6 +8,46 @@
       "repPassword": "nanan",
       "flgChecked": true,
       "id": 1
+    },
+    {
+      "username": "yomi",
+      "email": "yomi@mail.com",
+      "password": "pass",
+      "repPassword": "pass",
+      "flgChecked": true,
+      "id": 2
+    },
+    {
+      "username": "laxy",
+      "email": "laxy@mail.com",
+      "password": "pass3",
+      "repPassword": "pass3",
+      "flgChecked": true,
+      "id": 3
+    },
+    {
+      "username": "lazy",
+      "email": "lazy@mail.com",
+      "password": "pass2",
+      "repPassword": "pass2",
+      "flgChecked": true,
+      "id": 4
+    },
+    {
+      "username": "many",
+      "email": "many@mail.com",
+      "password": "peppo",
+      "repPassword": "lello",
+      "flgChecked": true,
+      "id": 5
+    },
+    {
+      "username": "many",
+      "email": "many@mail.com",
+      "password": "loll",
+      "repPassword": "loll",
+      "flgChecked": true,
+      "id": 6
     }
   ]
 }

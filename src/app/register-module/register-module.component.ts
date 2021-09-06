@@ -49,7 +49,14 @@ export class RegisterModuleComponent  {
     
        this.controlliForm()
        if (this.controlliChecked) {
-         this.dataUser.id = this.datausers.length+1
+         
+       this.datausers.forEach(function(item, index) {
+        item.id = index
+         this.dataUser.id = item.id
+         
+       })
+       this.dataUser.id = this.datausers.length
+       console.log(this.datausers)
        this.service.newUser(this.dataUser).subscribe(
          (result) => {
            
@@ -80,14 +87,25 @@ export class RegisterModuleComponent  {
   controlliForm() {
     if (!!this.dataUser) {
 
-      if (!this.dataUser.email.includes("@") || !this.dataUser.email.includes("mail") || !this.dataUser.email.includes(".com" || ".it") ) {
+      if (!this.dataUser.email.includes("@") || !this.dataUser.email.includes("mail") || !this.dataUser.email.includes(".com" || ".it")) {
          this.flgEmailErrata = true;
-         this.controlliChecked= false
          
       } else {
         this.flgEmailErrata = false;
+      }
+      if ((this.dataUser.repPassword !== this.dataUser.password)) {
+        this.flgPasswordErrata = true;
+
+      } else {
+        this.flgPasswordErrata = false;
+      }
+        if (this.flgEmailErrata || this.flgPasswordErrata) {
+          this.controlliChecked = false;
+        }
+      
+      else {
         this.controlliChecked= true;
-      } 
+      }
     //  if (!this.dataUser.password.includes(this.regExp) || !this.dataUser.repPassword.includes(this.regExp)) {
     //   this.flgPasswordErrataInvalid = true;
     //   this.controlliChecked= false;
@@ -97,15 +115,10 @@ export class RegisterModuleComponent  {
     //   this.flgPasswordErrataInvalid = false;
     //   this.controlliChecked= true;
     // }
-      if (this.dataUser.repPassword !== this.dataUser.password) {
-        this.flgPasswordErrata = true;
-        this.controlliChecked= false;
-        
-      } else {
-        this.flgPasswordErrata = false;
-        this.controlliChecked= true;
-      }
+    
+      
   }
+ 
   return this.controlliChecked
 }
 
