@@ -48,6 +48,14 @@
       "repPassword": "loll",
       "flgChecked": true,
       "id": 6
+    },
+    {
+      "username": "esempio",
+      "email": "es@mail.com",
+      "password": "password1",
+      "repPassword": "password1",
+      "flgChecked": true,
+      "id": 7
     }
   ]
 }

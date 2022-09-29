@@ -139,6 +139,10 @@ export class RegisterModuleComponent  {
     this.flgEventLogin.emit(true)
     this.route.navigate(["Login"])
   }
+
+  loginUser() {
+    
+  }
   
 
   

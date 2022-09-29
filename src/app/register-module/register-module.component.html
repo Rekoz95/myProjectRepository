@@ -1,91 +1,164 @@
-  
-  <div class="login-button">
-    <button class="btn btn-info" (click)="goToLoginPage()">Login</button>
+<!-- 
+  <div class="d-flex justify-content-center">
+    <h1 class="fs-2">Registrazione Utente</h1>
+    <div class="icon-set">
+      <i class="fa fa-address-card fa-2x"></i>
     </div>
-  
-
-<div class="d-flex justify-content-center">
-   <h1 class="fs-2">Registrazione Utente</h1>
-   <div class="icon-set">
-   <i class="fa fa-address-card fa-2x"></i>
+     
+      <button class="btn btn-info login-button" (click)="goToLoginPage()">Login</button>
+    
   </div>
-</div>
-
-<div class="container">
+<body>
+  <div class="main">
+    <div class="signup">
     <form #myForm="ngForm">
-        <div class="mb-3">
-          <label  class="form-label" >Nome Utente</label>
-          <input type="text" class="form-control" placeholder="Nome Utente" [(ngModel)]="dataUser.username" #username="ngModel" name="username"    required >
-          <div *ngIf="username.invalid && (username.touched || username.dirty)">
-            <p class="colorMessage">{{errorMessageBlank}}</p>
-          </div>
+     
+        
+        <input type="text" class="form-control" placeholder="Nome Utente" [(ngModel)]="dataUser.username"
+          #username="ngModel" name="username" required>
+        <div *ngIf="username.invalid && (username.touched || username.dirty)">
+          <p class="colorMessage">{{errorMessageBlank}}</p>
         </div>
-        <div class="mb-3">
-          <label  class="form-label">Email</label>
-          <input type="text"  class="form-control" placeholder="Email" [(ngModel)]="dataUser.email" #email="ngModel" name="email" required>
-          <div *ngIf="email.invalid && (email.touched || email.dirty)">
-            <p class="colorMessage">{{errorMessageBlank}}</p>
-          </div>
-          <div *ngIf="flgEmailErrata">
-            <p class="colorMessage">{{errorMessageEmail}}</p>
-          </div>
-        </div>
-        <div class="input-container mb-3">
-            <label  class="form-label">Password</label>
-              <div >
-                    <input [type]="hidePassword ? 'password' : 'text'"  class="form-control" placeholder="Password" [(ngModel)]="dataUser.password" #password="ngModel" name="psw"    required>
-                    <div *ngIf="password.invalid && (password.touched || password.dirty)">
-                      <p class="colorMessage">{{errorMessageBlank}}</p>
-                    </div>
-                      <div *ngIf="flgPasswordErrataInvalid">
-                        <p class="colorMessage">{{errorPasswordInvalid}}</p>
-                      </div>
-                       <div *ngIf="hidePassword">
-                      <button class="btn btn-secondary button-eye" (click)="showHidePassword()"><i class="fa fa-eye"></i></button>
-                     </div>
-                      <div *ngIf="!hidePassword">
-                     <button class="btn btn-secondary button-eye" (click)="showHidePassword()"><i class="fa fa-eye-slash"></i></button>
-                    </div>
-
-            </div>
       
+      
+        
+        <input type="text" class="form-control" placeholder="Email" [(ngModel)]="dataUser.email" #email="ngModel"
+          name="email" required>
+        <div *ngIf="email.invalid && (email.touched || email.dirty)">
+          <p class="colorMessage">{{errorMessageBlank}}</p>
+        </div>
+        <div *ngIf="flgEmailErrata">
+          <p class="colorMessage">{{errorMessageEmail}}</p>
+        </div>
+      
+      <div class="input-container mb-3">
+       
+        <div>
+          <input [type]="hidePassword ? 'password' : 'text'" class="form-control" placeholder="Password"
+            [(ngModel)]="dataUser.password" #password="ngModel" name="psw" required>
+          <div *ngIf="password.invalid && (password.touched || password.dirty)">
+            <p class="colorMessage">{{errorMessageBlank}}</p>
           </div>
-          <div class="mb-3">
-            <label class="form-label"> Ripeti Password</label>
-            <input [type]="hideRepPassword ? 'password' : 'text'"  class="form-control" placeholder="Ripeti Password" [(ngModel)]="dataUser.repPassword" #repPassword="ngModel" name="repPassword"    required>
-            <div *ngIf="repPassword.invalid && (repPassword.touched || repPassword.dirty)">
+          <div *ngIf="flgPasswordErrataInvalid">
+            <p class="colorMessage">{{errorPasswordInvalid}}</p>
+          </div>
+          <div *ngIf="hidePassword">
+            <button class="btn btn-secondary button-eye" (click)="showHidePassword()"><i class="fa fa-eye"></i></button>
+          </div>
+          <div *ngIf="!hidePassword">
+            <button class="btn btn-secondary button-eye" (click)="showHidePassword()"><i
+                class="fa fa-eye-slash"></i></button>
+          </div>
+
+        </div>
+
+      </div>
+      
+       
+        <input [type]="hideRepPassword ? 'password' : 'text'" class="form-control" placeholder="Ripeti Password"
+          [(ngModel)]="dataUser.repPassword" #repPassword="ngModel" name="repPassword" required>
+        <div *ngIf="repPassword.invalid && (repPassword.touched || repPassword.dirty)">
+          <p class="colorMessage">{{errorMessageBlank}}</p>
+        </div>
+        <div *ngIf="flgPasswordErrata">
+          <p class="colorMessage">{{errorPasswordNotEqual}}</p>
+        </div>
+        <div *ngIf="flgPasswordErrataInvalid">
+          <p class="colorMessage">{{errorPasswordInvalid}}</p>
+        </div>
+
+        <div *ngIf="hideRepPassword">
+          <button class="btn btn-secondary button-eye" (click)="showHideRepPassword()"><i
+              class="fa fa-eye"></i></button>
+        </div>
+        <div *ngIf="!hideRepPassword">
+          <button class="btn btn-secondary button-eye" (click)="showHideRepPassword()"><i
+              class="fa fa-eye-slash"></i></button>
+        </div>
+
+      
+
+      <div class="mb-3 form-check">
+
+        <input type="checkbox" class="form-check-input checkbox-class" [(ngModel)]="dataUser.flgChecked"
+          #flgChecked="ngModel" name="flgChecked" required>
+        <label class="form-check-label" for="exampleCheck1">Accetto termini e condizioni</label>
+
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button type="reset" class="btn btn-warning">Reset</button>
+        <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSuccess"
+          (click)="registraUtente()" [disabled]="myForm.invalid">Registrati</button>
+      </div>
+
+    </form>
+  </div>
+  </div>
+  </body> -->
+
+<!-- nuovo lay-->
+
+  <!DOCTYPE html>
+  <html lang="en" >
+
+  <body>
+  <!-- partial:index.partial.html -->
+  <!DOCTYPE html>
+  <html>
+
+  <body>
+    <div class="main">  	
+      <input type="checkbox" id="chk" aria-hidden="true">
+  
+        <div class="signup">
+          <form #myForm="ngForm">
+            <label for="chk" aria-hidden="true">Registrati</label>
+            <input type="text" name="username" placeholder="user name" [(ngModel)]="dataUser.username" #username="ngModel" required>
+            <div *ngIf="username.invalid && (username.touched || username.dirty)">
               <p class="colorMessage">{{errorMessageBlank}}</p>
             </div>
-            <div *ngIf="flgPasswordErrata">
-              <p class="colorMessage">{{errorPasswordNotEqual}}</p>
+            <input type="email" name="email" placeholder="email" [(ngModel)]="dataUser.email" #email="ngModel" required>
+            <div *ngIf="email.invalid && (email.touched || email.dirty)">
+              <p class="colorMessage">{{errorMessageBlank}}</p>
+            </div>
+            <div *ngIf="flgEmailErrata">
+              <p class="colorMessage">{{errorMessageEmail}}</p>
+            </div>
+            <input type="password" name="pswd" placeholder="Password"  [(ngModel)]="dataUser.password" #password="ngModel" name="psw" required>
+            <div *ngIf="password.invalid && (password.touched || password.dirty)">
+              <p class="colorMessage">{{errorMessageBlank}}</p>
             </div>
             <div *ngIf="flgPasswordErrataInvalid">
               <p class="colorMessage">{{errorPasswordInvalid}}</p>
             </div>
-
-              <div *ngIf="hideRepPassword">
-                    <button class="btn btn-secondary button-eye" (click)="showHideRepPassword()"><i class="fa fa-eye"></i></button>
-              </div>
-              <div *ngIf="!hideRepPassword">
-                    <button class="btn btn-secondary button-eye" (click)="showHideRepPassword()"><i class="fa fa-eye-slash"></i></button>
-              </div>
-
-          </div>
-
-        <div class="mb-3 form-check">
-         
-            <input type="checkbox" class="form-check-input checkbox-class" [(ngModel)]="dataUser.flgChecked" #flgChecked="ngModel" name="flgChecked" required  >
-            <label class="form-check-label" for="exampleCheck1">Accetto termini e condizioni</label>
-            
+            <input type="password" placeholder="Ripeti Password" [(ngModel)]="dataUser.repPassword" #repPassword="ngModel" name="repPassword" required>
+            <div class="d-flex justify-content-center">
+              <input type="checkbox"  class="checkbox-class"  [(ngModel)]="dataUser.flgChecked"
+              
+                  #flgChecked="ngModel" name="flgChecked" required>
+              <span class="form-check-label" for="exampleCheck1">Accetto termini e condizioni</span>
+            </div>
+          
+            <button type="submit" (click)="registraUtente()" [disabled]="myForm.invalid">Sign up</button>
+          </form>
         </div>
+  
+        <div class="login">
+          <form #myForm="ngForm">
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="email" name="email" placeholder="Email" [(ngModel)]="dataUser.email" #email="ngModel" required>
+            <input type="password" name="psw" placeholder="Password" [(ngModel)]="dataUser.password" #password="ngModel"  required>
+            <button [disabled]="myForm.invalid"  (click)="loginUser()">Login</button>
+          </form>
+        </div>
+    </div>
+  </body>
+  </html>
 
-        <div  class="d-flex justify-content-between">
-            <button type="reset" class="btn btn-warning">Reset</button>
-            <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSuccess" (click)="registraUtente()" [disabled]="myForm.invalid">Conferma</button>
-      </div>
-        
-      </form>
-</div>
+    
+  </body>
+  </html>
+  
 
-
-
+  
