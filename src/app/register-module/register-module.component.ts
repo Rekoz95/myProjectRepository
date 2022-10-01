@@ -49,23 +49,13 @@ export class RegisterModuleComponent  {
     
        this.controlliForm()
        if (this.controlliChecked) {
-         
-       this.datausers.forEach(function(item, index) {
-        item.id = index
-         this.dataUser.id = item.id
-         
-       })
        this.dataUser.id = this.datausers.length
        console.log(this.datausers)
        this.service.newUser(this.dataUser).subscribe(
          (result) => {
-           
-            
-            this.dataUser = result
             this.datausers.push(result)
-            this.eventUsername.emit(result)
             this.flgEventModal.emit(true)
-            this.route.navigate(["Utente"])
+            this.route.navigate(["pagina-utente"], {state: {user: result}})
            
          },
         
@@ -135,13 +125,10 @@ export class RegisterModuleComponent  {
     this.dataUser.flgChecked = this.flgCheck;
   }
 
-  goToLoginPage() {
-    this.flgEventLogin.emit(true)
-    this.route.navigate(["Login"])
-  }
+ 
 
   loginUser() {
-    
+
   }
   
 

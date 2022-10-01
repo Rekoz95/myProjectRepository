@@ -10,16 +10,24 @@ import { ServiceService } from '../service.service';
   styleUrls: ['./page-user-register.component.scss']
 })
 export class PageUserRegisterComponent implements OnInit {
- @Input() usernameEvent: ModelUser
- @Output() backEvent: EventEmitter<boolean> = new EventEmitter<boolean>()
-  constructor(private route: Router, private service: ServiceService) { }
+
+ 
+ userObject: ModelUser | undefined;
+  constructor(private route: Router, private service: ServiceService) {
+    const state = this.route.getCurrentNavigation()?.extras.state
+    if (state) {
+     
+      this.userObject = state.user
+    }
+   }
 
   ngOnInit() {
+    console.log(this.userObject)
   }
 
   tornaIndietro() {
-   this.backEvent.emit(false)
-   this.route.navigate(["Registrazione"])
+   
+   this.route.navigate([""])
   }
 
 }

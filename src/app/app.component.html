@@ -1,12 +1,11 @@
-<div *ngIf="!success && !loginView" >
+<!-- <div *ngIf="!success && !loginView" >
 <register-module (eventUsername)="getObjectUsername($event)" (flgEventModal)="getFlagTrue($event)" (flgEventLogin)="getFlagLoginTrue($event)"></register-module>
 </div>
 
 <div *ngIf="success && !loginView">
 <page-user-register [usernameEvent]="modelUserEvent" (backEvent)="getBackEvent($event)"></page-user-register>
-</div>
+</div> -->
 
-<div *ngIf="loginView">
-   <login-page (flgBack)="getFlgBackEvent($event)" (showUser)="getPageUserEvent($event)" (loginUserEvent)="getObjectUsername($event)"></login-page> 
-</div>
+<router-outlet></router-outlet>
+
 

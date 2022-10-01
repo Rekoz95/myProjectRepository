@@ -56,6 +56,54 @@
       "repPassword": "password1",
       "flgChecked": true,
       "id": 7
+    },
+    {
+      "username": "tester new",
+      "email": "boh@mail.com",
+      "password": "izanagi",
+      "repPassword": "izanagi",
+      "flgChecked": true,
+      "id": 8
+    },
+    {
+      "username": "lazy44",
+      "email": "kekko@mail.com",
+      "password": "izanagi",
+      "repPassword": "izanagi",
+      "flgChecked": true,
+      "id": 9
+    },
+    {
+      "username": "many",
+      "email": "kekkorikudo@gmail.com",
+      "password": "izanagi",
+      "repPassword": "izanagi",
+      "flgChecked": true,
+      "id": 10
+    },
+    {
+      "username": "lazy",
+      "email": "kekkorikudo@gmail.com",
+      "password": "izanagi",
+      "repPassword": "izanagi",
+      "flgChecked": true,
+      "id": 11
+    },
+    {
+      "username": "lazy33",
+      "email": "kekkorikudo@gmail.com",
+      "password": "izanagi",
+      "repPassword": "izanagi",
+      "flgChecked": true,
+      "id": 12
+    },
+    {
+      "username": "gicoco",
+      "email": "esdmpio@mail.com",
+      "password": "lalaland",
+      "repPassword": "lalaland",
+      "flgChecked": true,
+      "id": 13
     }
   ]
 }

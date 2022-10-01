@@ -9,7 +9,7 @@ import {FormsModule} from '@angular/forms';
 import { AppRoutingModule } from '../app/app-routing-module';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule }   from '@angular/router';
-import { LoginPageComponent } from './login-page/login-page.component';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {ServiceService} from '../app/service.service'
 
@@ -19,7 +19,6 @@ import {ServiceService} from '../app/service.service'
     AppComponent,
     RegisterModuleComponent,
     PageUserRegisterComponent,
-    LoginPageComponent
    
   ],
   imports: [
@@ -29,17 +28,14 @@ import {ServiceService} from '../app/service.service'
     HttpClientModule,
     RouterModule.forRoot([
       {
-        path: "Registrazione",
+        path: "",
         component: RegisterModuleComponent 
       },
       {
-        path:"Utente",
+        path:"pagina-utente",
         component: PageUserRegisterComponent
       },
-      {
-        path:"Login",
-        component: LoginPageComponent
-      } 
+  
     ])
       
     
