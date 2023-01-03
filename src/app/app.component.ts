@@ -10,10 +10,8 @@ import {ModelUser} from 'src/app/modelUser'
 export class AppComponent {
   title = 'Register';
   
-  modelUserEvent: ModelUser = new ModelUser();
-  success: boolean = false;
-  backEvent: boolean = false;
-  loginView: boolean = false;
+
+
  
 
   
@@ -21,31 +19,6 @@ export class AppComponent {
 
   constructor() { }
 
-  getObjectUsername(event) {
-    this.modelUserEvent = event
-
-  }
-
-  getFlagTrue(event) {
-    this.success = event;
-  }
-
-  getBackEvent(event) {
-   this.success = event
-  }
-
-  getFlagLoginTrue(event) {
-  this.loginView = event
-  }
-
-  getFlgBackEvent(event) {
-    this.loginView = event
-  }
-
-  getPageUserEvent(event) {
-    this.loginView = false;
-    this.success = event
-  }
 
  
 

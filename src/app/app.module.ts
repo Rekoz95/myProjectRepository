@@ -5,13 +5,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RegisterModuleComponent } from './register-module/register-module.component';
 import { PageUserRegisterComponent} from './page-user-register/page-user-register.component'
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from '../app/app-routing-module';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule }   from '@angular/router';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {ServiceService} from '../app/service.service'
+import {ServiceService} from './services/service.service'
 
 
 @NgModule({
@@ -26,6 +26,7 @@ import {ServiceService} from '../app/service.service'
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: "",

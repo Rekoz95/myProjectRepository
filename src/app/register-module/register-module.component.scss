@@ -1,56 +1,71 @@
-
-
-
 .container {
-    width: 373px;
-    margin-top: 13px;
+	width: 373px;
+	margin-top: 13px;
 }
 
-::ng-deep  .btn-warning {
-    width: 83px !important;
+::ng-deep .btn-warning {
+	width: 83px !important;
 }
 
 .login-button {
-    height: 6%;
-    width: 6%;
-    margin-left: 25px;
-    margin-top: 11px;
-  
+	height: 6%;
+	width: 6%;
+	margin-left: 25px;
+	margin-top: 11px;
+
 }
 
 ::ng-deep .btn-info {
-    width: 7%;
+	width: 7%;
 }
- 
+
 
 
 .icon-set {
-    margin-left: 9px;
-    margin-top: 14px;
+	margin-left: 9px;
+	margin-top: 14px;
 }
 
 .button-eye {
-    border-radius: 20px !important;
-    width: 40px !important;
+	border-radius: 20px !important;
+	width: 40px !important;
 }
 
 .checkbox-class {
-    cursor: pointer;
+	cursor: pointer;
 	accent-color: #573b8a;
 	width: 15px;
 	margin: 4px;
-	
+
 }
+
+#user.ng-invalid.ng-touched,
+#user.ng-invalid.ng-dirty,
+#email.ng-invalid.ng-touched,
+#email.ng-invalid.ng-dirty,
+#pw.ng-invalid.ng-touched,
+#pw.ng-invalid.ng-dirty {
+	border-color: red;
+	border-width: 1px;
+	border-style: solid;
+}
+
 
 
 
 .colorMessage {
-    color: red;
+	color: red;
 	text-align: center;
 	font-size: 12px;
 }
 
-body{
+.error-input {
+	border-color: red;
+	border-width: 1px;
+	border-style: solid;
+}
+
+body {
 	margin: 0;
 	padding: 0;
 	display: flex;
@@ -60,7 +75,8 @@ body{
 	font-family: 'Jost', sans-serif;
 	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
-.main{
+
+.main {
 	width: 350px;
 	height: 500px;
 	background: red;
@@ -69,15 +85,18 @@ body{
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
 }
-#chk{
+
+#chk {
 	display: none;
 }
-.signup{
+
+.signup {
 	position: relative;
-	width:100%;
+	width: 100%;
 	height: 100%;
 }
-label{
+
+label {
 	color: #fff;
 	font-size: 2.3em;
 	justify-content: center;
@@ -87,7 +106,8 @@ label{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
-input{
+
+input {
 	width: 60%;
 	height: 20px;
 	background: #e0dede;
@@ -99,7 +119,8 @@ input{
 	outline: none;
 	border-radius: 5px;
 }
-button{
+
+button {
 	width: 60%;
 	height: 40px;
 	margin: 10px auto;
@@ -116,28 +137,43 @@ button{
 	transition: .2s ease-in;
 	cursor: pointer;
 }
-button:hover{
+
+button:hover {
 	background: #6d44b8;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #8F7CEC, 0 0 25px #8F7CEC, 0 0 50px #8F7CEC, 0 0 100px #8F7CEC;
 }
-.login{
+
+.disable-button {
+   background-color: grey;
+   opacity: 0.5 ;
+
+}
+
+.login {
 	height: 460px;
 	background: #eee;
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
 }
-.login label{
+
+.login label {
 	color: #573b8a;
 	transform: scale(.6);
 }
 
-#chk:checked ~ .login{
+
+#chk:checked~.login {
 	transform: translateY(-500px);
 }
-#chk:checked ~ .login label{
-	transform: scale(1);	
+
+#chk:checked~.login label {
+	transform: scale(1);
 }
-#chk:checked ~ .signup label{
+
+#chk:checked~.signup label {
 	transform: scale(.6);
 }
 
@@ -148,4 +184,18 @@ button:hover{
 	padding-top: 4px;
 }
 
+.eye-class-pw {
 
+	position: absolute;
+	margin-left: 260px;
+	margin-top: -39px;
+	cursor: pointer;
+}
+
+.password-class {
+	position: relative;
+}
+
+.error-login-input {
+	color: red;
+}

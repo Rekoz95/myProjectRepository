@@ -1,8 +1,9 @@
 import { Component, OnInit, NgModule, EventEmitter, Output, TemplateRef } from '@angular/core';
-import {ModelUser} from 'src/app/modelUser'
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ServiceService } from '../service.service';
+import { ModelUser } from 'src/app/modelUser'
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceService } from '../services/service.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 
 
@@ -13,9 +14,9 @@ import { ServiceService } from '../service.service';
   templateUrl: './register-module.component.html',
   styleUrls: ['./register-module.component.scss']
 })
-export class RegisterModuleComponent  {
+export class RegisterModuleComponent implements OnInit {
 
-  dataUser: ModelUser = new ModelUser();
+  dataUser: ModelUser = {}
   datausers: Array<ModelUser> = new Array<ModelUser>()
   hidePassword: boolean = true;
   hideRepPassword: boolean = true;
@@ -29,91 +30,112 @@ export class RegisterModuleComponent  {
   flgEmailErrata: boolean = false;
   flgPasswordErrata: boolean = false;
   flgPasswordErrataInvalid: boolean = false;
-  pattern= "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+  pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
   controlliChecked: boolean = false;
-  
-  
 
-   @Output() eventUsername: EventEmitter<any> = new EventEmitter<any>();
-   @Output() flgEventModal: EventEmitter<any> = new EventEmitter<any>();
-   @Output() flgEventLogin: EventEmitter<boolean> = new EventEmitter<boolean>()
+
+
+  @Output() eventUsername: EventEmitter<any> = new EventEmitter<any>();
+  @Output() flgEventModal: EventEmitter<any> = new EventEmitter<any>();
+  @Output() flgEventLogin: EventEmitter<boolean> = new EventEmitter<boolean>()
   constructor(private route: Router, private service: ServiceService) { }
 
+  registerForm = new FormGroup({
+      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      repPassword: new FormControl('', [Validators.required]),
+      flgChecked: new FormControl(false, [Validators.required])
 
-  ngOnChange() {
-   
+
+  })
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  })
+  ngOnInit(): void {
+ 
   }
 
 
   registraUtente() {
     
-       this.controlliForm()
-       if (this.controlliChecked) {
-       this.dataUser.id = this.datausers.length
-       console.log(this.datausers)
-       this.service.newUser(this.dataUser).subscribe(
-         (result) => {
-            this.datausers.push(result)
-            this.flgEventModal.emit(true)
-            this.route.navigate(["pagina-utente"], {state: {user: result}})
-           
-         },
-        
-         (error) => {
-           error = JSON.stringify(error)
-           console.log( "Errore: "+error)
-         }
-        
-       )
-
-       
-        }
-       
-     }
-
+    this.controlliForm()
+    if (this.controlliChecked) {
+      this.service.getUser().subscribe( res => {
+        debugger;
+        const user = res.find(el => {
+          return this.registerForm.get('email').value === el.email 
+        })
+        if(!user) {
+        this.service.register(this.registerForm.value).subscribe(
+          (result) => {
+            if (result) {
+              this.flgEventModal.emit(true)
+              this.route.navigate(["pagina-utente", this.registerForm.value])
+              console.log(this.registerForm.value)
+            }
   
+          },
+  
+          (error) => {
+            error = JSON.stringify(error)
+            alert("Errore: " + error)
+          }
+  
+        )
+        } else {
+          alert('Utente gia esistente, effettua il login')
+        }
+    })
+
+    
+      
+  
+  
+
+    }
+
+  }
+
+
 
 
   controlliForm() {
-    if (!!this.dataUser) {
+    if (this.registerForm) {
 
-      if (!this.dataUser.email.includes("@") || !this.dataUser.email.includes("mail") || !this.dataUser.email.includes(".com" || ".it")) {
-         this.flgEmailErrata = true;
-         
-      } else {
+      if (this.registerForm.get('email').value.includes('@') || this.registerForm.get('email').value.includes('mail') || this.registerForm.get('email').value.includes('.it' || '.com')) {
         this.flgEmailErrata = false;
+        
+
+
+      } else {
+        this.flgEmailErrata = true;
       }
-      if ((this.dataUser.repPassword !== this.dataUser.password)) {
+      if ((this.registerForm.get('repPassword').value !== this.registerForm.get('password').value)) {
         this.flgPasswordErrata = true;
 
       } else {
         this.flgPasswordErrata = false;
       }
-        if (this.flgEmailErrata || this.flgPasswordErrata) {
-          this.controlliChecked = false;
-        }
-      
-      else {
-        this.controlliChecked= true;
+      if (this.flgEmailErrata || this.flgPasswordErrata) {
+        this.controlliChecked = false;
       }
-    //  if (!this.dataUser.password.includes(this.regExp) || !this.dataUser.repPassword.includes(this.regExp)) {
-    //   this.flgPasswordErrataInvalid = true;
-    //   this.controlliChecked= false;
 
-    //  } else {
+      else {
+        this.controlliChecked = true;
+      }
 
-    //   this.flgPasswordErrataInvalid = false;
-    //   this.controlliChecked= true;
-    // }
-    
-      
+
+
+    }
+
+    return this.controlliChecked
   }
- 
-  return this.controlliChecked
-}
 
   showHidePassword() {
-   this.hidePassword = !this.hidePassword
+    this.hidePassword = !this.hidePassword
   }
 
   showHideRepPassword() {
@@ -125,13 +147,29 @@ export class RegisterModuleComponent  {
     this.dataUser.flgChecked = this.flgCheck;
   }
 
- 
 
-  loginUser() {
 
+  loginUser(email: string, password: string) {
+    this.service.getUser().subscribe( res => {
+      const user = res.find(el => {
+        return email === el.email && password === el.password
+      })
+
+      if(user) {
+        alert('login avvenuto con successo, utente: ' + user.email)
+
+        this.route.navigate(["pagina-utente", user])
+      } else {
+        alert('utente non trovato, effettua la registrazione')
+      }
+
+
+    })
+
+   
   }
-  
 
-  
+
+
 
 }

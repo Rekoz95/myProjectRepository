@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { ModelUser } from '../modelUser';
-import { Router } from '@angular/router';
-import { ServiceService } from '../service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceService } from '../services/service.service';
 
 @Component({
   selector: 'page-user-register',
@@ -13,12 +13,12 @@ export class PageUserRegisterComponent implements OnInit {
 
  
  userObject: ModelUser | undefined;
-  constructor(private route: Router, private service: ServiceService) {
-    const state = this.route.getCurrentNavigation()?.extras.state
-    if (state) {
-     
-      this.userObject = state.user
-    }
+
+  constructor(private route: Router, private activedRoute: ActivatedRoute) {
+    this.activedRoute.params.subscribe( params => {
+       
+      this.userObject = params
+    })
    }
 
   ngOnInit() {
